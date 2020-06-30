@@ -90,7 +90,7 @@
           : url
       };
     };
-    //YOUR TURN: add your Mapbox token 
+
     mapboxgl.accessToken = 'pk.eyJ1IjoidHJldm9yc3BlY2h0IiwiYSI6ImNqNDdjZ2hvNjAxYWkzMmp0YW90bWhsZmwifQ.0d4-iKYzF8sy7YFpzVOKUA'; //Mapbox token 
     var map = new mapboxgl.Map({
       container: 'map', // container id
@@ -103,8 +103,8 @@
     $(document).ready(function () {
       $.ajax({
         type: "GET",
-        //YOUR TURN: Replace with csv export link
-        url: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQuutAzViDb1nL5gkHcEqzl0EBTBV5t-nZbra_WSXhcaZCnZTGhg1clB2FlmbC-TK_3q4m5odwdpkN1/pub?gid=0&single=true&output=csv',
+        // csv export link
+        url: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQuutAzViDb1nL5gkHcEqzl0EBTBV5t-nZbra_WSXhcaZCnZTGhg1clB2FlmbC-TK_3q4m5odwdpkN1/pub?output=csv',
         dataType: "text",
         success: function (csvData) { makeGeoJSON(csvData); }
       });
@@ -119,7 +119,7 @@
         }, function (err, data) {
           map.on('load', function () {
 
-            //Add the the layer to the map 
+            // Add the the layer to the map 
             map.addLayer({
               'id': 'csvData',
               'type': 'circle',
