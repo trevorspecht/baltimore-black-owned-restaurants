@@ -22,8 +22,10 @@ restaurant = []
 with open('restaurants.csv', mode='w', newline='') as restaurants:
   rest_writer = csv.writer(restaurants, delimiter=',', quotechar='"')
   for i, listing in enumerate(soup.find_all('li')):
-    # restaurant.append(listing) - makes an array of listings
-    tag = listing.a
-    name = tag.string
+    # restaurant.append(listing) # makes an array of listings
+    # print(listing)
+    name = listing.a.string
     link = listing.a.get('href')
-    rest_writer.writerow([name, link])
+    text = listing.p.contents[1]
+    print(text)
+    rest_writer.writerow([name, link, text])
