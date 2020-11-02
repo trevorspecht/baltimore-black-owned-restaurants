@@ -10,7 +10,9 @@ response = requests.get(url)
 soup = BeautifulSoup(response.text, "lxml")
 
 # gets everything between the ()
-addressregx = re.compile(r'(?<=\().+(?=\))')
+addressregex = re.compile(r'(?<=\().+(?=\))')
+# gets everything after the ()
+descregex = re.compile(r'(?<=\) ).+')
 
 with open('restaurants.csv', mode='w', newline='') as restaurants:
   rest_writer = csv.writer(restaurants, delimiter=',', quotechar='"')
@@ -18,13 +20,15 @@ with open('restaurants.csv', mode='w', newline='') as restaurants:
     name = listing.a.string
     link = listing.a.get('href')
     text = ''
+    address = ''
+    description = ''
     if len(listing.p.contents) > 1:
       text = listing.p.contents[1]
-    addressmatch = addressregx.search(text)
-    address = addressmatch.group(0)
-    print(address)
-    rest_writer.writerow([name, link, address])
-
-# [^\(].+(?=\))
-# [?<=\w].+(?=\))
-# (?<=\().+(?=\))
+    addressmatch = addressregex.search(text)
+    if addressmatch:
+      address = addressmatch.group(0)
+    descmatch = descregex.search(text)
+    if descmatch:
+      description = descmatch.group(0)
+    print(description)
+    rest_writer.writerow([name, link, address, description])
