@@ -17,11 +17,11 @@ descregex = re.compile(r'(?<=\) ).+')
 
 with open('restaurants.csv', mode='w', newline='') as restaurants:
   rest_writer = csv.writer(restaurants, delimiter=',', quotechar='"')
-  text = ''
-  address = ''
-  description = ''
   # iterates over <li> tags
   for i, listing in enumerate(soup.find_all('li')):
+    text = ''
+    address = ''
+    description = ''
     # parse name and link from <a> tags
     name = listing.a.string
     link = listing.a.get('href')
@@ -36,4 +36,4 @@ with open('restaurants.csv', mode='w', newline='') as restaurants:
     descmatch = descregex.search(text)
     if descmatch:
       description = descmatch.group(0)
-    rest_writer.writerow([name, link, address, description])
+    rest_writer.writerow([name, address, link, description])
