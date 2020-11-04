@@ -121,35 +121,35 @@
           map.on('load', function () {
 
             // determine color for map markers
-            let color = 'white';
-            switch(e.features[0].properties.Cuisine) {
-              case 'African/Caribbean':
-                color = 'purple';
-                break;
-              case 'American':
-                color = 'red';
-                break;
-              case 'Breakfast Specialty':
-                color = 'yellow';
-                break;
-              case 'Seafood':
-                color = 'blue';
-                break;
-              case 'Soul/Creole':
-                color = 'orange';
-                break;
-              case 'Vegan/Healthy':
-                color = 'green';
-                break;
-              case 'Dessert':
-                color = 'pink';
-                break;
-              case 'Coffee/Tea':
-                color = 'brown';
-                break;
-              default:
-                color = 'white';
-            }
+            // let color = 'white';
+            // switch(e.features[0].properties.Cuisine) {
+            //   case 'African/Caribbean':
+            //     color = 'purple';
+            //     break;
+            //   case 'American':
+            //     color = 'red';
+            //     break;
+            //   case 'Breakfast Specialty':
+            //     color = 'yellow';
+            //     break;
+            //   case 'Seafood':
+            //     color = 'blue';
+            //     break;
+            //   case 'Soul/Creole':
+            //     color = 'orange';
+            //     break;
+            //   case 'Vegan/Healthy':
+            //     color = 'green';
+            //     break;
+            //   case 'Dessert':
+            //     color = 'pink';
+            //     break;
+            //   case 'Coffee/Tea':
+            //     color = 'brown';
+            //     break;
+            //   default:
+            //     color = 'white';
+            // }
 
             // Add the the layer to the map 
             map.addLayer({
