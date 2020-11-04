@@ -10,7 +10,6 @@ html = requests.get(url)
 soup = BeautifulSoup(html.text, "lxml")
 
 token = 'pk.eyJ1IjoidHJldm9yc3BlY2h0IiwiYSI6ImNrYzJoM2t4ODAxNDAycnF0cHo5eHoybDcifQ.-Pw1y6ZbWuUMooRWmJAK1Q'
-apiurl = 'https:/api.mapbox.com/geocoding/v5/mapbox.places/'
 
 # gets everything between the ()
 addressregex = re.compile(r'(?<=\().+(?=\))')
@@ -21,12 +20,13 @@ with open('restaurants.csv', mode='w', newline='') as restaurants:
   rest_writer = csv.writer(restaurants, delimiter=',', quotechar='"')
   # iterates over <li> tags
   for i, listing in enumerate(soup.find_all('li')):
+    # initialize variables for each iteration
     text = ''
     address = ''
     description = ''
     latitude = ''
     longitude = ''
-    # parse name and link from <a> tags
+    # parse name and web page from <a> tags
     name = listing.a.string
     link = listing.a.get('href')
     # isolate text in <p> tags
