@@ -120,37 +120,6 @@
             
           map.on('load', function () {
 
-            // determine color for map markers
-            // let color = 'white';
-            // switch(e.features[0].properties.Cuisine) {
-            //   case 'African/Caribbean':
-            //     color = 'purple';
-            //     break;
-            //   case 'American':
-            //     color = 'red';
-            //     break;
-            //   case 'Breakfast Specialty':
-            //     color = 'yellow';
-            //     break;
-            //   case 'Seafood':
-            //     color = 'blue';
-            //     break;
-            //   case 'Soul/Creole':
-            //     color = 'orange';
-            //     break;
-            //   case 'Vegan/Healthy':
-            //     color = 'green';
-            //     break;
-            //   case 'Dessert':
-            //     color = 'pink';
-            //     break;
-            //   case 'Coffee/Tea':
-            //     color = 'brown';
-            //     break;
-            //   default:
-            //     color = 'white';
-            // }
-
             // Add the the layer to the map 
             map.addLayer({
               'id': 'csvData',
@@ -175,27 +144,6 @@
                     ['Coffee/Tea', '#a52a2a']
                   ]
                 }
-               /* 'circle-color': [
-                  'match',
-                  ['get', 'Cuisine'],
-                  'African/Caribbean',
-                  '#800080',
-                  'American',
-                  '#ff0000',
-                  'Breakfast Specialty',
-                  '#ffff00',
-                  'Seafood',
-                  '#0000ff',
-                  'Soul/Creole',
-                  '#ffa500',
-                  'Vegan/Healthy',
-                  '#008000',
-                  'Dessert',
-                  '#ffc0cb',
-                  'Coffee/Tea',
-                  '#a52a2a',
-                  '#cccccc'
-                ] */
               }
             });
 
