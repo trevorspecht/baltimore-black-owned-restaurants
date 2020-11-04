@@ -161,7 +161,41 @@
               },
               'paint': {
                 'circle-radius': 5,
-                'circle-color': 'purple'
+                'circle-color': {
+                  property: 'Cuisine',
+                  type: 'categorical',
+                  stops: [
+                    ['African/Caribbean', '#800080'],
+                    ['American', '#ff0000'],
+                    ['Breakfast Specialty', '#ffff00'],
+                    ['Seafood', '#0000ff'],
+                    ['Soul/Creole', '#ffa500'],
+                    ['Vegan/Healthy', '#008000'],
+                    ['Dessert', '#ffc0cb'],
+                    ['Coffee/Tea', '#a52a2a']
+                  ]
+                }
+               /* 'circle-color': [
+                  'match',
+                  ['get', 'Cuisine'],
+                  'African/Caribbean',
+                  '#800080',
+                  'American',
+                  '#ff0000',
+                  'Breakfast Specialty',
+                  '#ffff00',
+                  'Seafood',
+                  '#0000ff',
+                  'Soul/Creole',
+                  '#ffa500',
+                  'Vegan/Healthy',
+                  '#008000',
+                  'Dessert',
+                  '#ffc0cb',
+                  'Coffee/Tea',
+                  '#a52a2a',
+                  '#cccccc'
+                ] */
               }
             });
 
