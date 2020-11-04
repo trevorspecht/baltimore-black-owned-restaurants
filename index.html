@@ -117,6 +117,37 @@
           lonfield: 'Longitude',
           delimiter: ','
         }, function (err, data) {
+            // determine color for map markers
+            let color;
+            switch(e.features[0].properties.Cuisine) {
+              case 'African/Caribbean':
+                color = 'purple';
+                break;
+              case 'American':
+                color = 'red';
+                break;
+              case 'Breakfast Specialty':
+                color = 'yellow';
+                break;
+              case 'Seafoor':
+                color = 'blue';
+                break;
+              case 'Soul/Creole':
+                color = 'orange';
+                break;
+              case 'Vegan/Healthy':
+                color = 'green';
+                break;
+              case 'Dessert':
+                color = 'pink';
+                break;
+              case 'Coffee/Tea':
+                color = 'brown';
+                break;
+              default:
+                color = 'white';
+            }
+            
           map.on('load', function () {
 
             // Add the the layer to the map 
@@ -129,7 +160,7 @@
               },
               'paint': {
                 'circle-radius': 5,
-                'circle-color': "purple"
+                'circle-color': color
               }
             });
 
