@@ -2,201 +2,87 @@
 <html>
 
 <head>
-  <meta charset='utf-8' />
-  <title></title>
-  <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
-  <script src="https://api.mapbox.com/mapbox-gl-js/v1.9.1/mapbox-gl.js"></script>
-  <link href="https://api.mapbox.com/mapbox-gl-js/v1.9.1/mapbox-gl.css" rel="stylesheet" />
-  <script src='https://npmcdn.com/csv2geojson@latest/csv2geojson.js'></script>
-  <script src='https://npmcdn.com/@turf/turf/turf.min.js'></script>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-    }
-
-    #map {
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      width: 100%;
-    }
-
-    /* Popup styling */
-
-    .mapboxgl-popup {
-      padding-bottom: 5px;
-    }
-
-    .mapboxgl-popup-close-button {
-      display: none;
-    }
-
-    .mapboxgl-popup-content {
-      font: 400 15px/22px 'Source Sans Pro', 'Helvetica Neue', Sans-serif;
-      padding: 0;
-      width: 250px;
-    }
-
-    .mapboxgl-popup-content-wrapper {
-      padding: 1%;
-    }
-
-    .mapboxgl-popup-content h3 {
-      background: rgb(61, 59, 59);
-      text-align: center;
-      color: #fff;
-      margin: 0;
-      display: block;
-      padding: 15px;
-      font-weight: 700;
-      margin-top: -5px;
-    }
-
-    .mapboxgl-popup-content h4 {
-      margin: 0;
-      display: block;
-      padding: 10px 3px 10px 10px;
-      font-weight: 400;
-    }
-
-    .mapboxgl-container {
-      cursor: pointer;
-    }
-
-    .mapboxgl-popup-anchor-top>.mapboxgl-popup-content {
-      margin-top: 3px;
-    }
-
-    .mapboxgl-popup-anchor-top>.mapboxgl-popup-tip {
-      border-bottom-color: rgb(61, 59, 59);
-    }
-  </style>
+    <title></title>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link href='https://api.mapbox.com/mapbox-assembly/v0.24.0/assembly.min.css' rel='stylesheet'>
+    <script src='https://api.mapbox.com/mapbox-assembly/v0.24.0/assembly.js'></script>
+    <script src="https://api.mapbox.com/mapbox-gl-js/v1.7.0/mapbox-gl.js"></script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v1.7.0/mapbox-gl.css" rel="stylesheet" />
+    <script
+        src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.2.0/mapbox-gl-geocoder.min.js'></script>
+    <link rel='stylesheet'
+        href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.2.0/mapbox-gl-geocoder.css'
+        type='text/css' />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/geojson/0.5.0/geojson.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@turf/turf@5/turf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.15/lodash.min.js"></script>
+    <script src='https://npmcdn.com/csv2geojson@latest/csv2geojson.js'></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <link rel='stylesheet' href="style.css" />
 </head>
 
 <body>
-
-  <div id='map'></div>
-  <script>
-
-    var transformRequest = (url, resourceType) => {
-      var isMapboxRequest =
-        url.slice(8, 22) === "api.mapbox.com" ||
-        url.slice(10, 26) === "tiles.mapbox.com";
-      return {
-        url: isMapboxRequest
-          ? url.replace("?", "?pluginName=sheetMapper&")
-          : url
-      };
-    };
-
-    mapboxgl.accessToken = 'pk.eyJ1IjoidHJldm9yc3BlY2h0IiwiYSI6ImNrYzJoM2t4ODAxNDAycnF0cHo5eHoybDcifQ.-Pw1y6ZbWuUMooRWmJAK1Q';
-    var map = new mapboxgl.Map({
-      container: 'map', // container id
-      style: 'mapbox://styles/mapbox/dark-v10', //stylesheet location
-      center: [-76.610759, 39.2908816], // starting position
-      zoom: 10,// starting zoom
-      transformRequest: transformRequest
-    });
-
-    $(document).ready(function () {
-      $.ajax({
-        type: "GET",
-        // csv export link
-        url: 'https://docs.google.com/spreadsheets/d/1TLU9QKCgdmhtlme6szcqdyc7Y70-qJJsATEHwlQPv88/gviz/tq?tqx=out:csv&sheet=Sheet1',
-        dataType: "text",
-        success: function (csvData) { makeGeoJSON(csvData); }
-      });
+    <div class='flex-parent viewport-full relative scroll-hidden'>
+        <div class='flex-child w-full w360-ml absolute static-ml left bottom'>
+            <div class='flex-parent flex-parent--column viewport-third bg-white'>
+                <div class='flex-child flex-child--grow'>
+                    <div id="sidebarA"
+                        class="flex-parent flex-parent--column-ml flex-parent--center-main theme py12 px12 ">
+                        <h3 id='title' class='txt-l-ml txt-m txt-bold mb6 mr0-ml mr24 align-center block'>
+                        </h3>
+                        <p id='description' class='txt-s py12 none block-ml'>
+                        </p>
+                        <div class="flex-parent flex-parent--center-main relative-ml absolute right top mt0-ml mt6">
+                            <button id='filterResults' class='txt-bold btn btn--stroke mr0-ml mr12 px18-ml px6'>
+                                <svg class='icon inline-block align-middle h24 w24'>
+                                    <use xlink:href='#icon-filter' /></svg>
+                                <p class="inline-block-ml align-middle remove none">Show Filters</p>
+                            </button>
+                        </div>
 
 
+                    </div>
+                    <div id="listings" class="flex-child viewport-full py12 px12 listings scroll-auto"></div>
 
-      function makeGeoJSON(csvData) {
-        csv2geojson.csv2geojson(csvData, {
-          latfield: 'Latitude',
-          lonfield: 'Longitude',
-          delimiter: ','
-        }, function (err, data) {
-            
-          map.on('load', function () {
+                </div>
+            </div>
+        </div>
+        <div class='flex-child flex-child--grow w-auto viewport-full-ml viewport-twothirds' id='map'>
 
-            // Add the the layer to the map 
-            map.addLayer({
-              'id': 'csvData',
-              'type': 'circle',
-              'source': {
-                'type': 'geojson',
-                'data': data
-              },
-              'paint': {
-                'circle-radius': 5,
-                'circle-color': {
-                  property: 'Cuisine',
-                  type: 'categorical',
-                  stops: [
-                    ['African/Caribbean', '#800080'],
-                    ['American', '#ff0000'],
-                    ['Breakfast Specialty', '#ffff00'],
-                    ['Seafood', '#0000ff'],
-                    ['Soul/Creole', '#ffa500'],
-                    ['Vegan/Healthy', '#008000'],
-                    ['Dessert', '#ffc0cb'],
-                    ['Coffee/Tea', '#a52a2a']
-                  ]
-                }
-              }
-            });
+        </div>
 
+        <div id='modal'
+            class='absolute top right bottom left scroll-auto hide-visually flex-parent flex-parent--center-main mt120-ml'>
+            <div class='pt36'>
+                <div class='flex-child bg-white round relative scroll-auto'>
+                    <button id='exitButton' class='absolute top right px12 py12'>
+                        <svg class='icon link color-darken50'>
+                            <use xlink:href='#icon-close'></use>
+                        </svg>
+                    </button>
+                    <div class='px24 py24'>
+                        <form id="filters"></form>
+                        <div class='align-center py12'></div>
+                        <div class="flex-parent flex-parent--center-main">
+                            <button id="removeFilters" class="btn">Reset Filters</button>
+                        </div>
 
-            // When a click event occurs on a feature in the csvData layer, open a popup at the
-            // location of the feature, with description HTML from its properties.
-            map.on('click', 'csvData', function (e) {
-              var coordinates = e.features[0].geometry.coordinates.slice();
+                    </div>
 
-              //set popup text 
-              //You can adjust the values of the popup to match the headers of your CSV. 
-              // For example: e.features[0].properties.Name is retrieving information from the field Name in the original CSV. 
-              var description = `<h3>` + e.features[0].properties.Name + `</h3>` + `<h4>` + `<b>` + `Address: ` + `</b>` + e.features[0].properties.Address + `</h4>` + `<h4>` + `<b>` + `Phone: ` + `</b>` + e.features[0].properties.Phone + `</h4>` + `<h4>` + `<b>` + `Website: ` + `</b>` + e.features[0].properties.Website + `</h4>` + `<h4>` + `<b>` + `Cuisine: ` + `</b>` + e.features[0].properties.Cuisine + `</h4>`;
+                </div>
+            </div>
+        </div>
 
-              // Ensure that if the map is zoomed out such that multiple
-              // copies of the feature are visible, the popup appears
-              // over the copy being pointed to.
-              while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-                coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
-              }
+    </div>
 
-              //add Popup to map
-
-              new mapboxgl.Popup()
-                .setLngLat(coordinates)
-                .setHTML(description)
-                .addTo(map);
-            });
-
-            // Change the cursor to a pointer when the mouse is over the places layer.
-            map.on('mouseenter', 'csvData', function () {
-              map.getCanvas().style.cursor = 'pointer';
-            });
-
-            // Change it back to a pointer when it leaves.
-            map.on('mouseleave', 'places', function () {
-              map.getCanvas().style.cursor = '';
-            });
-
-            var bbox = turf.bbox(data);
-            map.fitBounds(bbox, { padding: 50 });
-
-          });
-
-        });
-      };
-    });
-
-
-
-
-  </script>
-
+    </div>
 </body>
+
+<script>
+
+</script>
+<script src="config.js"></script>
+<script src="app.js"></script>
 
 </html>
