@@ -9,7 +9,7 @@ const config = {
     description: "You can search by cuisine to sort the list below by cuisine type.",
     sideBarInfo: ["Name", "Address", "Website", "Phone"],
     // popupInfo: ["Name", "Address", "Website", "Phone", "Cuisine"],
-    popupInfo: ["Name", "Phone"],
+    popupInfo: ["Name"],
     filters: [
         {
             type: "dropdown",
