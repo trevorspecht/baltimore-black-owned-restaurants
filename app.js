@@ -432,11 +432,22 @@ map.on("load", function () {
                     "data": geojsonData
                 },
                 "paint": {
-                    "circle-radius": 5, // size of circles
-                    "circle-color": "#3D2E5D", // color of circles
-                    "circle-stroke-color": "white",
-                    "circle-stroke-width": 1,
-                    "circle-opacity": 0.7
+                    "circle-radius": 5,
+                    "circle-opacity": 0.7,
+                    "circle-color": {
+                      property: 'Cuisine', // geojson property to use to determine circle color
+                      type: 'categorical',
+                      stops: [
+                        ['African/Caribbean', '#800080'],
+                        ['American', '#ff0000'],
+                        ['Breakfast Specialty', '#ffff00'],
+                        ['Seafood', '#0000ff'],
+                        ['Soul/Creole', '#ffa500'],
+                        ['Vegan/Healthy', '#008000'],
+                        ['Dessert', '#ffc0cb'],
+                        ['Coffee/Tea', '#a52a2a']
+                      ]
+                    }
                 }
 
             });
