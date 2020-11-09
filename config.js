@@ -4,7 +4,7 @@ const config = {
     accessToken: "pk.eyJ1IjoidHJldm9yc3BlY2h0IiwiYSI6ImNrYzJoM2t4ODAxNDAycnF0cHo5eHoybDcifQ.-Pw1y6ZbWuUMooRWmJAK1Q",
     CSV: "https://docs.google.com/spreadsheets/d/1TLU9QKCgdmhtlme6szcqdyc7Y70-qJJsATEHwlQPv88/gviz/tq?tqx=out:csv&sheet=Sheet1",
     center: [-76.610759, 39.2908816], //Lng, Lat
-    zoom: 8, //Default zoom
+    zoom: 11, //Default zoom
     title: "Baltimore Black-owned Restaurants",
     description: "You can search by cuisine to sort the list below by cuisine type.",
     sideBarInfo: ["Name", "Address", "Website", "Phone"],
