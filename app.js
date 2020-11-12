@@ -445,8 +445,8 @@ map.on("load", function () {
                         ['Seafood', '#1557EA'],
                         ['Soul/Creole', '#500363'],
                         ['Vegan/Healthy', '#5BD5B0'],
-                        ['Dessert', '#F7EFE9'],
-                        ['Coffee/Tea', '#5980CF']
+                        ['Dessert', '#5980CF'],
+                        ['Coffee/Tea', '#CE9D78']
                       ]
                     }
                 }
