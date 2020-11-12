@@ -27,7 +27,8 @@ function createPopup(currentFeature) {
     if (popups[0]) popups[0].remove();
     const popup = new mapboxgl.Popup({ closeOnClick: true })
         .setLngLat(currentFeature.geometry.coordinates)
-        .setHTML("<h3>" + currentFeature.properties[config.popupInfo[0]] + "</h3>" + "<h4>" + currentFeature.properties[config.popupInfo[1]] + "</h4>")
+        // .setHTML("<h3>" + currentFeature.properties[config.popupInfo[0]] + "</h3>" + "<h4>" + currentFeature.properties[config.popupInfo[1]] + "</h4>")
+        .setHTML(`<h3> ${currentFeature.properties[config.popupInfo[0]]} </h3> \n <h4> ${currentFeature.properties[config.popupInfo[1]]} </h4>`)
         .addTo(map);
 }
 
@@ -445,8 +446,8 @@ map.on("load", function () {
                         ['Seafood', '#1557EA'],
                         ['Soul/Creole', '#500363'],
                         ['Vegan/Healthy', '#5BD5B0'],
-                        ['Dessert', '#F7EFE9'],
-                        ['Coffee/Tea', '#5980CF']
+                        ['Dessert', '#5980CF'],
+                        ['Coffee/Tea', '#CE9D78']
                       ]
                     }
                 }
