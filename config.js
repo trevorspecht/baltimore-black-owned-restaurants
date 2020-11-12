@@ -8,8 +8,7 @@ const config = {
     title: "Baltimore Black-owned Restaurants",
     description: "You can search by cuisine to sort the list below by cuisine type.",
     sideBarInfo: ["Name", "Address", "Website", "Phone"],
-    // popupInfo: ["Name", "Address", "Website", "Phone", "Cuisine"],
-    popupInfo: ["Name"],
+    popupInfo: ["Name", "Phone"],
     filters: [
         {
             type: "dropdown",
