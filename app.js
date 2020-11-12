@@ -438,14 +438,15 @@ map.on("load", function () {
                       property: 'Cuisine', // geojson property to use to determine circle color
                       type: 'categorical',
                       stops: [
-                        ['African/Caribbean', '#800080'],
-                        ['American', '#ff0000'],
-                        ['Breakfast Specialty', '#ffff00'],
-                        ['Seafood', '#0000ff'],
-                        ['Soul/Creole', '#ffa500'],
-                        ['Vegan/Healthy', '#008000'],
-                        ['Dessert', '#ffc0cb'],
-                        ['Coffee/Tea', '#a52a2a']
+                        ['African/Caribbean', '#563391'],
+                        ['American', '#BE2F77'],
+                        ['Asian', '#980DBA'],
+                        ['Breakfast Specialty', '#1AAEC6'],
+                        ['Seafood', '#1557EA'],
+                        ['Soul/Creole', '#500363'],
+                        ['Vegan/Healthy', '#5BD5B0'],
+                        ['Dessert', '#F7EFE9'],
+                        ['Coffee/Tea', '#5980CF']
                       ]
                     }
                 }
