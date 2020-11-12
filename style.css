@@ -5,12 +5,12 @@
 #filterResults{
     font-size: 12px;
     color: white;
-    background-color: #2A395F;
+    background-color: #2F215F;
 
 }
 
 .theme{
-    background-color: #2A395F;
+    background-color: #2F215F;
 }
 
 .select{
@@ -37,7 +37,7 @@
 .listings .item .title {
     display: inline-block;
     width: 100%;
-    color: #400080;
+    color: #2F215F;
     font-weight: 800;
     margin-top: 5px;
     text-decoration: none;
@@ -57,7 +57,7 @@
 
 ::-webkit-scrollbar-thumb {
     border-radius: 0;
-    background: #2A395F;
+    background: #2F215F;
 }
 
 

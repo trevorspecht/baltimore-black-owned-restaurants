@@ -17,6 +17,7 @@ const config = {
             listItems: [
               'African/Caribbean',
               'American',
+              'Asian',
               'Breakfast Specialty',
               'Seafood',
               'Soul/Creole',
