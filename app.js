@@ -28,7 +28,7 @@ function createPopup(currentFeature) {
     const popup = new mapboxgl.Popup({ closeOnClick: true })
         .setLngLat(currentFeature.geometry.coordinates)
         // .setHTML("<h3>" + currentFeature.properties[config.popupInfo[0]] + "</h3>" + "<h4>" + currentFeature.properties[config.popupInfo[1]] + "</h4>")
-        .setHTML("<h3>" + "<a href=" + currentFeature.properties[config.popupInfo[1]] + ">" + currentFeature.properties[config.popupInfo[0]] + "</a>" + "</h3>")
+        .setHTML("<h3" + ' style="color: #2F215F; text-decoration: underline;"' + ">" + "<a href=" + currentFeature.properties[config.popupInfo[1]] + ' target="_blank" rel="noopener noreferrer"' + ">" + currentFeature.properties[config.popupInfo[0]] + "</a>" + "</h3>")
         .addTo(map);
 }
 
