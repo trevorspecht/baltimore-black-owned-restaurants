@@ -37,6 +37,7 @@ function buildLocationList(locationData) {
   /* Add a new listing section to the sidebar. */
   const listings = document.getElementById("listings");
   listings.innerHTML = "";
+  console.log("total # of features: ", locationData.features.length);
   locationData.features.forEach(function (location, i) {
     const prop = location.properties;
 
